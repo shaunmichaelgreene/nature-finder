@@ -27,11 +27,11 @@ var formSubmitHandler = function(event) {
     }  
 };
 
-var updateSearchHistory = function() {
+var updateSearchHistory = function(zipInput) {
     console.log(zipInput);
 }
 
-var loadSearchHistory = function() {
+var loadSearchHistory = function(zipInput) {
     console.log(searchHistory);
 }
 
@@ -85,13 +85,13 @@ var getTrailInfo = function(latitude, longitude) {
 };
 
 
-var displayTrailInfo = function() {
+var displayTrailInfo = function(zipInput) {
     console.log(zipInput); //replace with data/or data response object
 }
 
 loadSearchHistory()
 
-searchButtonEl.addEventListener("submit", formSubmitHandler); //event listener for initial search button
+searchFormEl.addEventListener("submit", formSubmitHandler); //event listener for initial search button
 
 
 
