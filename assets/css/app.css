@@ -1,3 +1,37 @@
+body {
+    background-image: url("..//images/pexel-trail.jpg");
+    background-size: cover;
+    width: 100%;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+body h1 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align:center;
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.callout h3 {
+    font-size: 36px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.callout p {
+    font-size: 24px;
+    color: white;
+}
+
 div {
     border: 1px solid red;
+    opacity: 0.95;
+}
+
+#results-container {
+    font-size: 24px;
+    font-weight: bolder;
 }

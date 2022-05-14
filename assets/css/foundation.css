@@ -17,7 +17,8 @@ html {
   -webkit-text-size-adjust: 100%; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  background-color: green; }
 
 h1 {
   font-size: 2em;
@@ -6454,3 +6455,4 @@ a.thumbnail {
 .long-delay {
   -webkit-animation-delay: 700ms !important;
           animation-delay: 700ms !important; }
+
