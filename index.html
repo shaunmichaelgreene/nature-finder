@@ -1,117 +1,182 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html class="no-js" lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foundation for Sites</title>
-    <link rel="stylesheet" href="./assets/css/foundation.css">
-    <link rel="stylesheet" href="./assets/css/app.css">
-    <script src="https://kit.fontawesome.com/378f0fe68c.js" crossorigin="anonymous"></script>
-  </head>
-<body>
-  <div id="title" class="grid-container">
-    <div class="grid-x grid-padding-x">
-      <div class="large-12 cell">
-        <h1>Welcome to the easy trail finder <i class="fas fa-hiking" alt="icon of hiker"></i></h1>
-      </div>
-    </div>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="x-ua-compatible" content="ie=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Easy Trail Finder</title>
+        <link rel="stylesheet" href="./assets/css/foundation.css" />
+        <link rel="stylesheet" href="./assets/css/app.css" />
+    </head>
 
-<!-- Hero form begins -->
-    <div class="grid-x grid-padding-x" id="wrapper">
-      <!-- Fix picture to fill in the proper space needed as background -->
-      <div class="hero-trail-img"><img src="./assets/images/trail-picture.jpg" alt="photo of trail in the woods">
-      <div class="large-12 cell">
-        
-        <div class="callout">
-          <h3>Find the perfect hiking trail for you! </h3>
-          
-          <p>Looking for a trail to hike near you?</p>
-          <p>Enter in your zipcode below to find the 5 closest trails to hike including descriptions on each</p>
-          <div class="grid-x grid-padding-x">
-            <div class="large-10 cell">
-              <label>Zipcode</label>
-              <input type="text" id="search-input" placeholder="Enter in a zipcode to find nearby trails" />
-              
+    <body>
+        <header class="large-12 cell">
+            <h1>Welcome to the easy trail finder</h1>
+        </header>
+        <div class="grid-container">
+            <div class="grid-x grid-padding-x"></div>
+
+            <!-- Hero form begins -->
+            <div class="grid-x grid-padding-x" id="wrapper">
+                <!-- Fix picture to fill in the proper space needed as background -->
+                <p class="background-picture">
+                    <img src="./assets/images/trail-picture.jpg" alt="" />
+                </p>
+                <div class="large-12 cell">
+                    <div class="callout">
+                        <h2>Find the perfect hiking trail for you!</h2>
+
+                        <p>Looking for a trail to hike near you?</p>
+                        <p>
+                            Enter in your zipcode below to find the 5 closest
+                            trails to hike including descriptions on each
+                        </p>
+                        <div class="form-container grid-x grid-padding-x">
+                            <form id="search-form" class="large-10 cell">
+                                <label>Zipcode</label>
+                                <input
+                                    name="zip"
+                                    type="text"
+                                    id="zip"
+                                    autofocus="true"
+                                    placeholder="Enter a 5-digit zipcode to find nearby parks & trails!"
+                                />
+                                <button
+                                    type="submit"
+                                    class="button"
+                                    id="search-button"
+                                >Search</button>
+                            </form>
+                            <!-- <div id="search-buttn-container" class="large-2 cell"> -->
+                            <!-- Need to fix button -->
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="large-2 cell">
-              <!-- Need to fix button -->
-              <button class="search-button" id="search-button">Search</button>
-              </div>
+            <!-- 2nd column with trails begin -->
+            <!-- 1st trail found -->
+            <div id="results-container">
+                <div class="grid-x">
+                    <div class="small-3 cell">
+                        <div class="trails-found">
+                            <p id="name-1"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="trail-data">
+                            <p id="address-1"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="phone-1"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="website-1"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2nd trail found -->
+                <div class="grid-x">
+                    <div class="small-3 cell">
+                        <div class="trails-found">
+                            <p id="name-2"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="trail-data">
+                            <p id="address-2"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="phone-2"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="website-2"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3rd trail found -->
+                <div class="grid-x">
+                    <div class="small-3 cell">
+                        <div class="trails-found">
+                            <p id="name-3"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="trail-data">
+                            <p id="address-3"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="phone-3"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="website-3"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4th trail found -->
+                <div class="grid-x">
+                    <div class="small-3 cell">
+                        <div class="trails-found">
+                            <p id="name-4"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="trail-data">
+                            <p id="address-4"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="phone-4"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="website-4"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5th trail found -->
+                <div class="grid-x">
+                    <div class="small-3 cell">
+                        <div class="trails-found">
+                            <p id="name-5"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="trail-data">
+                            <p id="address-5"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="phone-5"></p>
+                        </div>
+                    </div>
+                    <div class="small-3 cell">
+                        <div class="map">
+                            <p id="website-5"></p>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
-    </div>
-<!-- 2nd column with trails begin -->
-<!-- 1st trail found -->
-<div class="grid-x">
-  <div class="small-3 cell">
-    <div class="trails-found">Trails</div>
-    </div>
-  <div class="small-3 cell">
-    <div class="trail-data">Trail Information</div>
-  </div>
-  <div class="small-3 cell">
-    <div class="map">Map</div>
-  </div>
-  </div> 
-<!-- 2nd trail found -->
-<div class="grid-x">
-  <div class="small-3 cell">
-    <div class="trails-found">Trails</div>
-    </div>
-  <div class="small-3 cell">
-    <div class="trail-data">Trail Information</div>
-  </div>
-  <div class="small-3 cell">
-    <div class="map">Map</div>
-  </div>
-  </div>
-  <!-- 3rd trail found -->
-  <div class="grid-x">
-    <div class="small-3 cell">
-      <div class="trails-found">Trails</div>
-      </div>
-    <div class="small-3 cell">
-      <div class="trail-data">Trail Information</div>
-    </div>
-    <div class="small-3 cell">
-      <div class="map">Map</div>
-    </div>
-  </div> 
-  <!-- 4th trail found -->
-  <div class="grid-x">
-    <div class="small-3 cell">
-      <div class="trails-found">Trails</div>
-      </div>
-    <div class="small-3 cell">
-      <div class="trail-data">Trail Information</div>
-    </div>
-    <div class="small-3 cell">
-      <div class="map">Map</div>
-    </div>
-  </div>
-  <!-- 5th trail found -->
-  <div class="grid-x">
-    <div class="small-3 cell">
-      <div class="trails-found">Trails</div>
-      </div>
-    <div class="small-3 cell">
-      <div class="trail-data">Trail Information</div>
-    </div>
-    <div class="small-3 cell">
-      <div class="map">Map</div>
-    </div>
-    </div> 
- 
-  
-  
 
-    <script src="js/vendor/jquery.js"></script>
-    <script src="js/vendor/what-input.js"></script>
-    <script src="js/vendor/foundation.js"></script>
-    <script src="js/app.js"></script>
-  </body>
+        <script src="./assets/js/vendor/jquery.js"></script>
+        <script src="./assets/js/vendor/what-input.js"></script>
+        <script src="./assets/js/vendor/foundation.js"></script>
+        <script src="./assets/js/app.js"></script>
+        <script src="./assets/js/script.js"></script>
+    </body>
 </html>
