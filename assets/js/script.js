@@ -4,6 +4,7 @@ var searchButtonEl = document.querySelector("#search-button");
 var searchFormEl = document.querySelector("#search-form");
 var resultsContainerEl = document.querySelector("#results-container")
 var searchHistory = [];
+var displayCount = 0;
 
 
 var formSubmitHandler = function(event) {
@@ -73,7 +74,30 @@ var getTrailInfo = function(latitude, longitude) {
             if (response.ok) { 
                 response.json().then(function(data) { 
                     console.log(data);
-                    // console.log(data.resourceSets[0].resources[0])
+                    if (data.resourceSets[0].resources.length == 0) {
+                        console.log("No results found in your area! Go blaze your own trail! (or try a different location)");
+                        //call new function to clear page content?
+                        //add modal
+                    } else if (data.resourceSets[0].resources.length > 0) {
+                        console.log(data.resourceSets[0].resources[0].Address.formattedAddress);
+                        console.log(data.resourceSets[0].resources.length);
+                        for (var i=0; i < data.resourceSets[0].resources.length; i++) {
+                            // console.log(data.resourceSets[0].resources[i]);
+                            var resultsObject = data.resourceSets[0].resources[i];
+                            var resultName = resultsObject.name;
+                            var resultAddress = resultsObject.Address.formattedAddress;
+                            // if (data.resourceSets[0].resources[i].point.coordinates) {
+                            //     var resultCoordinates = resultsObject.point.coordinates;
+                            //     console.log(resultCoordinates);
+                            // } else {
+                            //     console.log("no coordinates provided");
+                            // };
+                            var resultWebsite =  resultsObject.Website;
+                            var resultPhone = resultsObject.PhoneNumber;
+                            displayTrailInfo(resultsObject)
+                        };
+
+                    }
             });
             } else {
                 alert("Error: " + response.statusText);
@@ -85,8 +109,27 @@ var getTrailInfo = function(latitude, longitude) {
 };
 
 
-var displayTrailInfo = function(zipInput) {
-    console.log(zipInput); //replace with data/or data response object
+var displayTrailInfo = function(resultsObject) {
+    console.log(resultsObject); //replace with data/or data response object
+    //add dark border class to all divs (to make them appear visible)
+    displayCount++
+    if (displayCount <= 5) {
+        var nameIdPrefix = "name";
+        var addressIdPrefix = "address";
+        var phoneIdPrefix = "phone";
+        var websiteIdPrefix = "website";
+        var targetNameId = nameIdPrefix.concat("-", displayCount);
+        var targetAddressId = addressIdPrefix.concat("-", displayCount);
+        var targetPhoneId = phoneIdPrefix.concat("-", displayCount);
+        var targetWebsiteId = websiteIdPrefix.concat("-", displayCount);
+        
+        document.getElementById(targetNameId).textContent = resultsObject.name;
+        document.getElementById(targetAddressId).textContent = resultsObject.Address.formattedAddress;
+        document.getElementById(targetPhoneId).textContent = resultsObject.PhoneNumber;
+        document.getElementById(targetWebsiteId).textContent = resultsObject.Website;
+
+    };
+
 }
 
 loadSearchHistory()
