@@ -30,3 +30,8 @@ div {
     border: 1px solid red;
     opacity: 0.95;
 }
+
+#results-container {
+    font-size: 24px;
+    font-weight: bolder;
+}
