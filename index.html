@@ -31,7 +31,7 @@
                             Enter in your zipcode below to find the 5 closest
                             trails to hike including descriptions on each
                         </p>
-                        <div class="form-container grid-x grid-padding-x">
+                        <div id ="form-container" class="form-container grid-x grid-padding-x">
                             <form id="search-form" class="large-10 cell">
                                 <label>Zipcode</label>
                                 <input
@@ -49,6 +49,9 @@
                             </form>
                             <!-- <div id="search-buttn-container" class="large-2 cell"> -->
                             <!-- Need to fix button -->
+                            <div id="buttons-container">
+
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -56,6 +59,7 @@
             <!-- 2nd column with trails begin -->
             <!-- 1st trail found -->
             <div id="results-container">
+                <h3 id="name-container"></h3>
                 <div class="grid-x">
                     <div class="small-3 cell">
                         <div class="trails-found">
