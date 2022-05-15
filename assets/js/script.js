@@ -16,16 +16,19 @@ var formSubmitHandler = function(event) {
     var zipInput = zipInputEl.value.trim( );
     console.log(zipInput);  
     if (isNaN(zipInput)) { //ERROR HANDLING TO DETECT NON-NUMERIC CHARACTERS IN THE INPUT
-        alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
-        location.reload();
+        $('#input-alert').foundation('open');
+        zipInputEl.value = ""         
+
+        // alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
+        // location.reload();
     } else if (zipInput.length == 5) { //check to verify if input is a 5-digit zipcode
         console.log("A search has been initialized for the zip code of: " + zipInput);
         zipInputEl.value = ""; 
         getCoordinates(zipInput); //pass zip to function to retrieve coordinates
         // getTrailInfo(zipInput);
-    } else {//if input invalid, (ex: trigger user MODAL to re-enter)
-        alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
-        location.reload();          
+    } else { //if input invalid, (ex: trigger user MODAL to re-enter)
+        $('#input-alert').foundation('open'); 
+        zipInputEl.value = ""         
     }  
 };
 
@@ -52,7 +55,21 @@ var updateSearchHistory = function(cityName, stateId, zipInput) {
 // };
 
 var loadSearchHistory = function(zipInput) {
-    console.log(searchHistory);
+    searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistory){
+        searchHistory = [];
+    } else {
+        $.each(searchHistory, function (e) {
+            var cityName = $(this).attr("city");
+            var stateId = $(this).attr("state");
+            var zip = $(this).attr("zip");
+            var historyButtonEl = document.createElement("button");
+            $(historyButtonEl).addClass("button");
+            historyButtonEl.textContent = (zip + " (" + cityName + ", " + stateId + ")");
+            historyButtonEl.setAttribute("id", zip);
+            buttonsContainerEl.appendChild(historyButtonEl);
+        })
+    };
 }
 
 var getCoordinates = function(zipInput) {
@@ -75,11 +92,12 @@ var getCoordinates = function(zipInput) {
                     nameContainerEl.textContent = ("Showing Results for: " + zipInput + " (" + cityName + ", " + stateId + ")");
             });
             } else {
-                alert("Error: " + response.statusText);
+                console.log("Error: " + response.statusText);
             };
         })    
         .catch(function(error) {
-            alert("Unable to connect to trail finder server!");
+            // alert("Unable to connect to Nature Finder servers!");
+            $('#api-alert').foundation('open');
         });    
 }
 
@@ -107,11 +125,13 @@ var getTrailInfo = function(latitude, longitude) {
                     }
                 });
             } else {
-                alert("Error: " + response.statusText);
+                console.log("Error: " + response.statusText);
+                $('#api-alert').foundation('open');
             };
         })    
         .catch(function(error) {
-            alert("Unable to connect to trail finder server!");
+            // alert("Unable to connect to trail finder server!");
+            $('#api-alert').foundation('open');
         });    
 };
     
@@ -166,13 +186,30 @@ var displayTrailInfo = function(resultsObject) {
         document.getElementById(targetNameId).textContent = resultsObject.nameArr[i];
         document.getElementById(targetAddressId).textContent = resultsObject.addressArr[i];
         document.getElementById(targetPhoneId).textContent = resultsObject.phoneArr[i];
-        document.getElementById(targetWebsiteId).textContent = resultsObject.websiteArr[i];
+        document.getElementById(targetWebsiteId).textContent = "website";
+        document.getElementById(targetWebsiteId).setAttribute("href", resultsObject.websiteArr[i]);
+        document.getElementById(targetWebsiteId).setAttribute("target", "_blank");
+
+
+    };
+};
+
+var buttonClickHandler = function(event) {
+    var zipInput = event.target.getAttribute("id")
+    if(zipInput.length == 5) {
+        // resultsContainerEl.textContent=""
+        getCoordinates(zipInput);
+;    } else if (zipInput = "clear-history") {
+        localStorage.clear()
+        location.reload()
     };
 };
 
 loadSearchHistory()
 
 searchFormEl.addEventListener("submit", formSubmitHandler); //event listener for initial search button
+buttonsContainerEl.addEventListener("click", buttonClickHandler);
+
 
 //API KEY SECRET - ADD PLACEHOLDER FOR YOUR API KEY. PUSH TO GH SO THAT IT ISNT VIEWABLE. THEN MAKE NOTE IN THE README POINT TO WHERE YOUR API KEY. 
 

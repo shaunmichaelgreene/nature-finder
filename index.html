@@ -47,12 +47,30 @@
                             <!-- <div id="search-buttn-container" class="large-2 cell"> -->
                             <!-- Need to fix button -->
                             <div id="buttons-container">
-
+                                <button id="clear-history" class="button">Clear History</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        <!--Start Zip Input Error Handling Modal-->
+        <div class="reveal" id="input-alert" data-reveal>
+        <p>Please re-enter your search term as a 5-digit zip code (Ex:'15212'")</p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--End Zip Input Error Handling Modal-->
+
+      <!--Start API Error Response Modal-->
+      <div class="reveal" id="api-alert" data-reveal>
+        <p>Unable to connect to Nature Finder servers!</p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--End API Error Response Modal-->
+
             <!-- 2nd column with trails begin -->
             <!-- 1st trail found -->
             <div id="results-container">
@@ -75,7 +93,7 @@
                     </div>
                     <div class="small-3 cell">
                         <div class="map">
-                            <p id="website-1"></p>
+                            <a id="website-1"></a>
                         </div>
                     </div>
                 </div>
@@ -98,7 +116,7 @@
                     </div>
                     <div class="small-3 cell">
                         <div class="map">
-                            <p id="website-2"></p>
+                            <a id="website-2"></a>
                         </div>
                     </div>
                 </div>
@@ -121,7 +139,7 @@
                     </div>
                     <div class="small-3 cell">
                         <div class="map">
-                            <p id="website-3"></p>
+                            <a id="website-3"></a>
                         </div>
                     </div>
                 </div>
@@ -144,7 +162,7 @@
                     </div>
                     <div class="small-3 cell">
                         <div class="map">
-                            <p id="website-4"></p>
+                            <a id="website-4"></a>
                         </div>
                     </div>
                 </div>
@@ -167,7 +185,7 @@
                     </div>
                     <div class="small-3 cell">
                         <div class="map">
-                            <p id="website-5"></p>
+                            <a id="website-5"></a>
                         </div>
                     </div>
                 </div>
