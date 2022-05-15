@@ -16,14 +16,14 @@ body h1 {
 .callout h3 {
     font-size: 36px;
     font-weight: bold;
-    color: white;
+    color: black;
     margin: 0;
     text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .callout p {
     font-size: 24px;
-    color: white;
+    color: black;
 }
 
 div {
