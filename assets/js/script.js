@@ -75,7 +75,7 @@ var loadSearchHistory = function(zipInput) {
 var getCoordinates = function(zipInput) {
     console.log(zipInput);
     var apiKey = "3e833f7a376ea50a4b5e624e59d6e907"
-    var apiUrl = "http://api.positionstack.com/v1/forward?access_key=" + apiKey + "&query=" + zipInput + "," + "US";
+    var apiUrl = "https://api.positionstack.com/v1/forward?access_key=" + apiKey + "&query=" + zipInput + "," + "US";
     fetch(apiUrl)
         .then(function(response) {
             if (response.ok) { 
