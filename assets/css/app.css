@@ -7,7 +7,7 @@ body {
 }
 
 header h1 {
-    background-image: linear-gradient(100deg, rgb(2, 192, 250), #020d69);
+    background-image: linear-gradient(15deg, rgb(2, 192, 250), #020d69);
     background-clip: text;
     background-size: 100%;
     -webkit-background-clip: text;
@@ -48,6 +48,3 @@ header h1 {
     width: 100%;
 }
 
-div {
-    border: 1px solid red;
-}
