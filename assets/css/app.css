@@ -27,7 +27,7 @@ body h1 {
 }
 
 div {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     opacity: 0.95;
 }
 
@@ -39,4 +39,18 @@ div {
 .result-cell {
     display: flex;
     width: 100%;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.not-shown {
+    display:none;
+}
+
+div#results-container p {
+    margin-bottom: 0;
+}
+
+.button {
+    margin-left: 5px;
 }

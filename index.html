@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
         <title>Nature Finder</title>
         <link rel="stylesheet" href="./assets/css/foundation.css" />
         <link rel="stylesheet" href="./assets/css/app.css" />
@@ -27,7 +27,7 @@
 
                         <p>Looking for a trail to hike near you? A fun natural landmark? A peaceful local park?</p>
                         <p>
-                            Enter in your zipcode below to find the 5 closest natural points of interest, including locations and details for each. Once you've found it here, you're ready to go get lost!
+                            Enter in your zipcode below to find up to 5 nearby natural points of interest, including locations and details for each. Once you've found it here, you're ready to go get lost!
                         </p>
                         <div id ="form-container" class="form-container grid-x grid-padding-x">
                             <form id="search-form" class="large-10 cell">
@@ -74,7 +74,7 @@
 
             <!-- 2nd column with trails begin -->
             <!-- 1st trail found -->
-            <div id="results-container" class="callout">
+            <div id="results-container" class="callout not-shown">
                 <h3 id="name-container"></h3>
                 <div class="grid-x">
                     <div class="small-3 result-cell cell">
@@ -92,7 +92,7 @@
                 </div>
                 <!-- 2nd trail found -->
                 <div class="grid-x">
-                    <div class="small-3 result-cell cell">
+                    <div class="small-3 result-cell text-center cell">
                             <p id="name-2"></p>
                     </div>
                     <div class="small-3 result-cell cell">

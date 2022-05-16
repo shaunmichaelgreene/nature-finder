@@ -189,7 +189,7 @@ var displayTrailInfo = function(resultsObject) {
         document.getElementById(targetWebsiteId).textContent = "website";
         document.getElementById(targetWebsiteId).setAttribute("href", resultsObject.websiteArr[i]);
         document.getElementById(targetWebsiteId).setAttribute("target", "_blank");
-
+        resultsContainerEl.classList.remove("not-shown");
 
     };
 };
