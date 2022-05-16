@@ -3,32 +3,39 @@ body {
     background-size: cover;
     width: 100%;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    opacity: 0.9;
 }
 
-body h1 {
+header h1 {
+    background-image: linear-gradient(15deg, rgb(2, 192, 250), #020d69);
+    background-clip: text;
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
     font-size: 40px;
     font-weight: bold;
     text-align:center;
-    color: white;
     margin: 0;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
-.callout h3 {
+
+.callout h2 {
     font-size: 36px;
     font-weight: bold;
-    color: black;
+    color: #020d69;
     margin: 0;
-    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    text-align: center;
 }
 
 .callout p {
     font-size: 24px;
-    color: black;
+    color: #020d69;
+    text-align: center;
 }
 
-div {
-    border: 1px solid red;
-    opacity: 0.95;
+#search-form label {
+    color: #020d69;
 }
 
 #results-container {
@@ -40,3 +47,4 @@ div {
     display: flex;
     width: 100%;
 }
+
