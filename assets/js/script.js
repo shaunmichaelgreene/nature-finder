@@ -3,6 +3,8 @@ var zipInputEl = document.querySelector("#zip");
 var searchButtonEl = document.querySelector("#search-button");
 var searchFormEl = document.querySelector("#search-form");
 var resultsContainerEl = document.querySelector("#results-container")
+var nameContainerEl = document.querySelector("#name-container");
+var buttonsContainerEl = document.querySelector("#buttons-container");
 var searchHistory = [];
 var displayCount = 0;
 
@@ -14,26 +16,60 @@ var formSubmitHandler = function(event) {
     var zipInput = zipInputEl.value.trim( );
     console.log(zipInput);  
     if (isNaN(zipInput)) { //ERROR HANDLING TO DETECT NON-NUMERIC CHARACTERS IN THE INPUT
-        alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
-        location.reload();
+        $('#input-alert').foundation('open');
+        zipInputEl.value = ""         
+
+        // alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
+        // location.reload();
     } else if (zipInput.length == 5) { //check to verify if input is a 5-digit zipcode
         console.log("A search has been initialized for the zip code of: " + zipInput);
         zipInputEl.value = ""; 
-        updateSearchHistory(zipInput); //pass zip to search history
         getCoordinates(zipInput); //pass zip to function to retrieve coordinates
         // getTrailInfo(zipInput);
-    } else {//if input invalid, (ex: trigger user MODAL to re-enter)
-        alert("Please re-enter your search term as a 5-digit zip code (Ex:'15212'");
-        location.reload();          
+    } else { //if input invalid, (ex: trigger user MODAL to re-enter)
+        $('#input-alert').foundation('open'); 
+        zipInputEl.value = ""         
     }  
 };
 
-var updateSearchHistory = function(zipInput) {
-    console.log(zipInput);
+var updateSearchHistory = function(cityName, stateId, zipInput) {
+    var newSearch = {
+        city: cityName,
+        state: stateId,
+        zip: zipInput
+    }
+    console.log(newSearch);
+    searchHistory.push(newSearch);
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistory)); //set search history in localStorage
+    var historyButtonEl = document.createElement("button");
+    $(historyButtonEl).addClass("button"); 
+    historyButtonEl.textContent = zipInput.concat(" (", cityName, ", ", stateId, ")");
+    historyButtonEl.setAttribute("id", zipInput);
+    console.log(zipInput.concat(" (", cityName, ", ", stateId, ")"));
+    buttonsContainerEl.appendChild(historyButtonEl);
 }
 
+
+// var displaySearchButtons = function(newSearch) {
+// console.log(newSearch);
+// };
+
 var loadSearchHistory = function(zipInput) {
-    console.log(searchHistory);
+    searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+    if (!searchHistory){
+        searchHistory = [];
+    } else {
+        $.each(searchHistory, function (e) {
+            var cityName = $(this).attr("city");
+            var stateId = $(this).attr("state");
+            var zip = $(this).attr("zip");
+            var historyButtonEl = document.createElement("button");
+            $(historyButtonEl).addClass("button");
+            historyButtonEl.textContent = (zip + " (" + cityName + ", " + stateId + ")");
+            historyButtonEl.setAttribute("id", zip);
+            buttonsContainerEl.appendChild(historyButtonEl);
+        })
+    };
 }
 
 var getCoordinates = function(zipInput) {
@@ -52,16 +88,20 @@ var getCoordinates = function(zipInput) {
                     console.log(latitude, longitude, cityName, stateId);
                     console.log(cityName + ', ' + stateId);
                     getTrailInfo(latitude, longitude);
-
+                    updateSearchHistory(cityName, stateId, zipInput); //pass zip to search history
+                    nameContainerEl.textContent = ("Showing Results for: " + zipInput + " (" + cityName + ", " + stateId + ")");
             });
             } else {
-                alert("Error: " + response.statusText);
+                console.log("Error: " + response.statusText);
             };
         })    
         .catch(function(error) {
-            alert("Unable to connect to trail finder server!");
+            // alert("Unable to connect to Nature Finder servers!");
+            $('#api-alert').foundation('open');
         });    
 }
+
+//ANCHOR LINK TO SEARCH FOR NAME AND ZIP CODE ON GOOGLE MAPS? 
 
 var getTrailInfo = function(latitude, longitude) {
     // var secretKey = 
@@ -81,62 +121,97 @@ var getTrailInfo = function(latitude, longitude) {
                     } else if (data.resourceSets[0].resources.length > 0) {
                         console.log(data.resourceSets[0].resources[0].Address.formattedAddress);
                         console.log(data.resourceSets[0].resources.length);
-                        for (var i=0; i < data.resourceSets[0].resources.length; i++) {
-                            // console.log(data.resourceSets[0].resources[i]);
-                            var resultsObject = data.resourceSets[0].resources[i];
-                            var resultName = resultsObject.name;
-                            var resultAddress = resultsObject.Address.formattedAddress;
-                            // if (data.resourceSets[0].resources[i].point.coordinates) {
-                            //     var resultCoordinates = resultsObject.point.coordinates;
-                            //     console.log(resultCoordinates);
-                            // } else {
-                            //     console.log("no coordinates provided");
-                            // };
-                            var resultWebsite =  resultsObject.Website;
-                            var resultPhone = resultsObject.PhoneNumber;
-                            displayTrailInfo(resultsObject)
-                        };
-
+                        buildTrailArrays(data);                        
                     }
-            });
+                });
             } else {
-                alert("Error: " + response.statusText);
+                console.log("Error: " + response.statusText);
+                $('#api-alert').foundation('open');
             };
         })    
         .catch(function(error) {
-            alert("Unable to connect to trail finder server!");
+            // alert("Unable to connect to trail finder server!");
+            $('#api-alert').foundation('open');
         });    
 };
-
+    
+var buildTrailArrays = function(data) {
+    var resultsObject = {
+        nameArr: [],
+        addressArr: [],
+        phoneArr: [],
+        websiteArr:[]
+    };
+    
+    for (var i=0; i < data.resourceSets[0].resources.length; i++) {
+        // console.log(data.resourceSets[0].resources[i]);
+        resultsObject.nameArr.push(data.resourceSets[0].resources[i].name);
+        resultsObject.addressArr.push(data.resourceSets[0].resources[i].Address.formattedAddress);
+        resultsObject.phoneArr.push(data.resourceSets[0].resources[i].PhoneNumber);
+        resultsObject.websiteArr.push(data.resourceSets[0].resources[i].Website);
+        
+        // name: data.resourceSets[0].resources[i].name,
+        // address: data.resourceSets[0].resources[i].Address.formattedAddress,
+        // phone: data.resourceSets[0].resources[i].PhoneNumber,
+        // website: data.resourceSets[0].resources[i].Website
+        // var resultWebsite =  resultsObject.Website;
+        // var resultPhone = resultsObject.PhoneNumber;
+        
+        // if (data.resourceSets[0].resources[i].point.coordinates) {
+        //     var resultCoordinates = resultsObject.point.coordinates;
+        //     console.log(resultCoordinates);
+        // } else {
+        //     console.log("no coordinates provided");
+        // };
+    };
+    console.log(resultsObject);
+    displayTrailInfo(resultsObject)
+};
 
 var displayTrailInfo = function(resultsObject) {
     console.log(resultsObject); //replace with data/or data response object
     //add dark border class to all divs (to make them appear visible)
-    displayCount++
-    if (displayCount <= 5) {
+    // displayCount++
+    // if (displayCount <= 5) {
         var nameIdPrefix = "name";
         var addressIdPrefix = "address";
         var phoneIdPrefix = "phone";
         var websiteIdPrefix = "website";
-        var targetNameId = nameIdPrefix.concat("-", displayCount);
-        var targetAddressId = addressIdPrefix.concat("-", displayCount);
-        var targetPhoneId = phoneIdPrefix.concat("-", displayCount);
-        var targetWebsiteId = websiteIdPrefix.concat("-", displayCount);
+    for (var i = 0; i < 5; i++) {
+        var targetNameId = nameIdPrefix.concat("-", (i+1));
+        var targetAddressId = addressIdPrefix.concat("-", (i+1));
+        var targetPhoneId = phoneIdPrefix.concat("-", (i+1));
+        var targetWebsiteId = websiteIdPrefix.concat("-", (i+1));
         
-        document.getElementById(targetNameId).textContent = resultsObject.name;
-        document.getElementById(targetAddressId).textContent = resultsObject.Address.formattedAddress;
-        document.getElementById(targetPhoneId).textContent = resultsObject.PhoneNumber;
-        document.getElementById(targetWebsiteId).textContent = resultsObject.Website;
+        document.getElementById(targetNameId).textContent = resultsObject.nameArr[i];
+        document.getElementById(targetAddressId).textContent = resultsObject.addressArr[i];
+        document.getElementById(targetPhoneId).textContent = resultsObject.phoneArr[i];
+        document.getElementById(targetWebsiteId).textContent = "website";
+        document.getElementById(targetWebsiteId).setAttribute("href", resultsObject.websiteArr[i]);
+        document.getElementById(targetWebsiteId).setAttribute("target", "_blank");
+
 
     };
+};
 
-}
+var buttonClickHandler = function(event) {
+    var zipInput = event.target.getAttribute("id")
+    if(zipInput.length == 5) {
+        // resultsContainerEl.textContent=""
+        getCoordinates(zipInput);
+;    } else if (zipInput = "clear-history") {
+        localStorage.clear()
+        location.reload()
+    };
+};
 
 loadSearchHistory()
 
 searchFormEl.addEventListener("submit", formSubmitHandler); //event listener for initial search button
+buttonsContainerEl.addEventListener("click", buttonClickHandler);
 
 
+//API KEY SECRET - ADD PLACEHOLDER FOR YOUR API KEY. PUSH TO GH SO THAT IT ISNT VIEWABLE. THEN MAKE NOTE IN THE README POINT TO WHERE YOUR API KEY. 
 
 //Function for formHandling - called by event listener for the submit button
 //function for initial API call (trailSearch) - fetch initial API  
