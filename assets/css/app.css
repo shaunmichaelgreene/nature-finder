@@ -3,6 +3,7 @@ body {
     background-size: cover;
     width: 100%;
     font-family:Georgia, 'Times New Roman', Times, serif;
+    opacity: 0.95;
 }
 
 body h1 {
@@ -28,7 +29,6 @@ body h1 {
 
 div {
     border: 1px solid red;
-    opacity: 0.95;
 }
 
 #results-container {
