@@ -89,3 +89,11 @@ header h1 {
 .result-row {
     border-bottom: double #020d69;
 }
+
+#name-container {
+    border-bottom: solid 1px black;
+}
+
+.phone, .website {
+    justify-content: center;
+}
