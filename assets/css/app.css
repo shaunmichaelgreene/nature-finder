@@ -82,6 +82,10 @@ header h1 {
     margin-left: 5px;
 }
 
-#border.grid-x {
+/* #border.grid-x {
     border-bottom: double #020d69;
-  }
+} */
+
+.result-row {
+    border-bottom: double #020d69;
+}
