@@ -7,6 +7,7 @@ var nameContainerEl = document.querySelector("#name-container");
 var buttonsContainerEl = document.querySelector("#buttons-container");
 var searchHistory = [];
 var displayCount = 0;
+var clearHistoryButtonEl = document.querySelector("#clear-history");
 
 
 var formSubmitHandler = function(event) {
@@ -47,6 +48,7 @@ var updateSearchHistory = function(cityName, stateId, zipInput) {
     historyButtonEl.setAttribute("id", zipInput);
     console.log(zipInput.concat(" (", cityName, ", ", stateId, ")"));
     buttonsContainerEl.appendChild(historyButtonEl);
+    clearHistoryButtonEl.classList.remove("not-shown");
 }
 
 
@@ -68,6 +70,7 @@ var loadSearchHistory = function(zipInput) {
             historyButtonEl.textContent = (zip + " (" + cityName + ", " + stateId + ")");
             historyButtonEl.setAttribute("id", zip);
             buttonsContainerEl.appendChild(historyButtonEl);
+            clearHistoryButtonEl.classList.remove("not-shown");
         })
     };
 }
@@ -182,22 +185,55 @@ var displayTrailInfo = function(resultsObject) {
         var targetAddressId = addressIdPrefix.concat("-", (i+1));
         var targetPhoneId = phoneIdPrefix.concat("-", (i+1));
         var targetWebsiteId = websiteIdPrefix.concat("-", (i+1));
+               
+        if (!resultsObject.nameArr[i]) {
+            document.getElementById(targetNameId).textContent = "No Result Found!";
+            document.getElementById(targetAddressId).textContent = "No Result Found!";
+            document.getElementById(targetPhoneId).textContent = "No Result Found!";
+            document.getElementById(targetWebsiteId).textContent = "No Result Found!";
+            
+        } else {
+            document.getElementById(targetNameId).textContent = resultsObject.nameArr[i];
+
+        }
+        if (!resultsObject.addressArr[i]) {
+            document.getElementById(targetAddressId).textContent = "No Address Found!";
+
+        } else {
+            document.getElementById(targetAddressId).textContent = resultsObject.addressArr[i];
+        }
+
+        if (!resultsObject.phoneArr[i]) {
+            document.getElementById(targetPhoneId).textContent = "No Phone # Found!";
+
+        } else {
+            document.getElementById(targetPhoneId).textContent = resultsObject.phoneArr[i];
+        }
         
-        document.getElementById(targetNameId).textContent = resultsObject.nameArr[i];
-        document.getElementById(targetAddressId).textContent = resultsObject.addressArr[i];
-        document.getElementById(targetPhoneId).textContent = resultsObject.phoneArr[i];
-        document.getElementById(targetWebsiteId).textContent = "website";
-        document.getElementById(targetWebsiteId).setAttribute("href", resultsObject.websiteArr[i]);
-        document.getElementById(targetWebsiteId).setAttribute("target", "_blank");
-        resultsContainerEl.classList.remove("not-shown");
+        if (!resultsObject.websiteArr[i]) {
+            document.getElementById(targetWebsiteId).textContent = "No Website Found!";
+        } else {
+            document.getElementById(targetWebsiteId).textContent = "website";
+            document.getElementById(targetWebsiteId).setAttribute("href", resultsObject.websiteArr[i]);
+            document.getElementById(targetWebsiteId).setAttribute("target", "_blank");
+        }
+        //LOOK INTO ADDING CLASS/ID OF "RESULS-ROW-0, RESULTS-ROW-1, ETC" 
+
+        // resultsContainerEl.classList.remove("not-shown");
+        console.log(resultsObject.websiteArr[i]);
+
 
     };
+    resultsContainerEl.classList.remove("not-shown");
+    clearHistoryButtonEl.classList.remove("not-shown")
+
 };
 
 var buttonClickHandler = function(event) {
     var zipInput = event.target.getAttribute("id")
     if(zipInput.length == 5) {
-        // resultsContainerEl.textContent=""
+        resultsContainerEl.classList.remove("not-shown");
+        // $("#results-container").empty();
         getCoordinates(zipInput);
 ;    } else if (zipInput = "clear-history") {
         localStorage.clear()
