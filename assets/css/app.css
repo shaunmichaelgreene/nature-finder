@@ -1,5 +1,8 @@
 body {
     background-image: url("..//images/pexel-trail.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     background-size: cover;
     width: 100%;
     font-family:Georgia, 'Times New Roman', Times, serif;
@@ -14,14 +17,18 @@ header h1 {
     -moz-background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
-    font-size: 40px;
     font-weight: bold;
     text-align:center;
     margin: 0;
 }
 
+.callout {
+    border-color:#020d69;
+    border-radius: 25px;
+}
+
+
 .callout h2 {
-    font-size: 36px;
     font-weight: bold;
     color: #020d69;
     margin: 0;
@@ -29,40 +36,52 @@ header h1 {
 }
 
 .callout p {
-    font-size: 24px;
+    font-size: 20px;
     color: #020d69;
     text-align: center;
-}
-
-div {
-    /* border: 1px solid red; */
-    opacity: 0.95;
 }
 
 #search-form label {
     color: #020d69;
 }
 
-#results-container {
-    font-size: 24px;
-    font-weight: bolder;
-}
-
 .result-cell {
     display: flex;
     width: 100%;
     align-items: center;
-    /* justify-content: center; */
+    border-bottom:#020d69;
+    border-width: 50px;
+
 }
 
 .not-shown {
     display:none;
 }
 
-div#results-container p {
-    margin-bottom: 0;
+#results-container p#name-1{
+    font-weight:bold;
+}
+
+#results-container p#name-2 {
+    font-weight:bold;
+}
+
+#results-container p#name-3 {
+    font-weight:bold;
+}
+
+#results-container p#name-4 {
+    font-weight:bold;
+}
+
+#results-container p#name-5 {
+    font-weight:bold;
 }
 
 .button {
     margin-left: 5px;
 }
+
+#border.grid-x {
+    border-bottom: double #020d69;
+  }
