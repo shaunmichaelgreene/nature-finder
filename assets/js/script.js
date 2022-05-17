@@ -95,13 +95,43 @@ var getCoordinates = function(zipInput) {
                     nameContainerEl.textContent = ("Showing Results for: " + zipInput + " (" + cityName + ", " + stateId + ")");
             });
             } else {
+                console.log("Error: " + response.statusText, " passing parameters to backup API function");
+                getCoordinatesPlanB(zipInput);
+            };
+        })    
+        .catch(function(error) {
+            //CALL FOR BACKUP API
+            getCoordinatesPlanB(zipInput);
+            // $('#api-alert').foundation('open');
+        });    
+}
+
+var getCoordinatesPlanB = function(zipInput) {
+    var apiKey = "AtVPCFspco6yXG6X2mdr0-y2H4XO7ZPHdP_Tj-jLPHoBCXKiJlNCsG41H7GSWoYl";
+    var apiUrl = "http://dev.virtualearth.net/REST/v1/Locations?q=" + zipInput + "&key=" + apiKey;
+    fetch(apiUrl)
+        .then(function(response) {
+            if (response.ok) { 
+                response.json().then(function(data) { 
+                    console.log(data);
+                    var latitude = data.resourceSets[0].resources[0].point.coordinates[0];
+                    var longitude = data.resourceSets[0].resources[0].point.coordinates[1];
+                    var cityName = data.resourceSets[0].resources[0].address.locality;
+                    var stateId = data.resourceSets[0].resources[0].address.adminDistrict;
+                    console.log(latitude, longitude, cityName, stateId);
+                    console.log(cityName + ', ' + stateId);
+                    getTrailInfo(latitude, longitude);
+                    updateSearchHistory(cityName, stateId, zipInput); //pass zip to search history
+                    nameContainerEl.textContent = ("Showing Results for: " + zipInput + " (" + cityName + ", " + stateId + ")");
+                });
+            } else {
                 console.log("Error: " + response.statusText);
             };
         })    
         .catch(function(error) {
-            // alert("Unable to connect to Nature Finder servers!");
             $('#api-alert').foundation('open');
         });    
+
 }
 
 //ANCHOR LINK TO SEARCH FOR NAME AND ZIP CODE ON GOOGLE MAPS? 
