@@ -54,3 +54,11 @@ div#results-container p {
 .button {
     margin-left: 5px;
 }
+
+#name-container {
+    border-bottom: solid 1px black;
+}
+
+.phone, .website {
+    justify-content: center;
+}

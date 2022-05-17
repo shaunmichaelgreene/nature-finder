@@ -210,17 +210,20 @@ var displayTrailInfo = function(resultsObject) {
         var addressIdPrefix = "address";
         var phoneIdPrefix = "phone";
         var websiteIdPrefix = "website";
+        var resultRowIdPrefix = "results-row"
     for (var i = 0; i < 5; i++) {
         var targetNameId = nameIdPrefix.concat("-", (i+1));
         var targetAddressId = addressIdPrefix.concat("-", (i+1));
         var targetPhoneId = phoneIdPrefix.concat("-", (i+1));
         var targetWebsiteId = websiteIdPrefix.concat("-", (i+1));
+        var targetResultRowId = resultRowIdPrefix.concat("-", (i+1));
                
         if (!resultsObject.nameArr[i]) {
             document.getElementById(targetNameId).textContent = "No Result Found!";
             document.getElementById(targetAddressId).textContent = "No Result Found!";
             document.getElementById(targetPhoneId).textContent = "No Result Found!";
             document.getElementById(targetWebsiteId).textContent = "No Result Found!";
+            document.getElementById(targetResultRowId).classList.add("not-shown");
             
         } else {
             document.getElementById(targetNameId).textContent = resultsObject.nameArr[i];
