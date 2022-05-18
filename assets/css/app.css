@@ -53,8 +53,8 @@ header h1 {
     border-width: 50px;
 
 }
-
-.not-shown {
+/* class name to hide HTML features as needed */
+.not-shown {  
     display:none;
 }
 
@@ -88,12 +88,13 @@ header h1 {
 
 .result-row {
     border-bottom: double #020d69;
+    justify-content: center;
+}
+
+.result-cell {
+    justify-content: center;
 }
 
 #name-container {
     border-bottom: solid 1px black;
 }
-
-/* .phone, .website {
-    justify-content: center;
-} */

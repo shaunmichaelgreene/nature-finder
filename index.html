@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
         <title>Nature Finder</title>
         <link rel="stylesheet" href="./assets/css/foundation.css" />
         <link rel="stylesheet" href="./assets/css/app.css" />
@@ -46,7 +46,6 @@
                                 >Search</button>
                             </form>
                             <!-- <div id="search-buttn-container" class="large-2 cell"> -->
-                            <!-- Need to fix button -->
                             <div id="buttons-container">
 
 
@@ -75,81 +74,90 @@
       </div>
       <!--End API Error Response Modal-->
 
+      <!--Start No Results Response Modal-->
+      <div class="reveal" id="no-results" data-reveal>
+        <p>No results found in your area! Go blaze your own trail! (or try a different location)</p>
+        <button class="close-button" data-close aria-label="Close modal" type="button">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--End No Results Response Modal-->
+
             <!-- 2nd column with trails begin -->
             <!-- 1st trail found -->
             <div id="results-container" class="callout not-shown">
                 <h3 id="name-container"></h3>
                 <div id="results-row-1"class="grid-x result-row">
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                             <p id="name-1"></p>
                     </div>
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                             <p id="address-1"></p>
                     </div>
-                    <div class="small-3 result-cell cell phone">
+                    <div class="small-10 large-3 result-cell cell phone">
                             <p id="phone-1"></p>
                     </div>
-                    <div class="small-3 result-cell cell website">
+                    <div class="small-10 large-3 result-cell cell website">
                             <a id="website-1"></a>
                     </div>
                 </div>
                 <!-- 2nd trail found -->
                 <div id="results-row-2"class="grid-x result-row">
-                    <div class="small-3 result-cell text-center cell">
+                    <div class="small-10 large-3 result-cell text-center cell">
                             <p id="name-2"></p>
                     </div>
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                             <p id="address-2"></p>
                     </div>
-                    <div class="small-3 result-cell cell phone">
+                    <div class="small-10 large-3 result-cell cell phone">
                         <p id="phone-2"></p>
                     </div>
-                    <div class="small-3 result-cell cell website">
+                    <div class="small-10 large-3 result-cell cell website">
                         <a id="website-2"></a>
                     </div>
                 </div>
                 <!-- 3rd trail found -->
                 <div id="results-row-3"class="grid-x result-row">
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                             <p id="name-3"></p>
                     </div>
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                             <p id="address-3"></p>
                     </div>
-                    <div class="small-3 result-cell cell phone">
+                    <div class="small-10 large-3 result-cell cell phone">
                             <p id="phone-3"></p>
                     </div>
-                    <div class="small-3 result-cell cell website">
+                    <div class="small-10 large-3 result-cell cell website">
                             <a id="website-3"></a>
                     </div>
                 </div>
                 <!-- 4th trail found -->
                 <div id="results-row-4"class="grid-x result-row">
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                         <p id="name-4"></p>
                     </div>
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                         <p id="address-4"></p>
                     </div>
-                    <div class="small-3 result-cell cell phone">
+                    <div class="small-10 large-3 result-cell cell phone">
                         <p id="phone-4"></p>
                     </div>
-                    <div class="small-3 result-cell cell website">
+                    <div class="small-10 large-3 result-cell cell website">
                         <a id="website-4"></a>
                     </div>
                 </div>
                 <!-- 5th trail found -->
                 <div id="results-row-5"class="grid-x result-row">
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                         <p id="name-5"></p>
                     </div>
-                    <div class="small-3 result-cell cell">
+                    <div class="small-10 large-3 result-cell cell">
                         <p id="address-5"></p>
                     </div>
-                    <div class="small-3 result-cell cell phone">
+                    <div class="small-10 large-3 result-cell cell phone">
                         <p id="phone-5"></p>
                     </div>
-                    <div class="small-3 result-cell cell website">
+                    <div class="small-10 large-3 result-cell cell website">
                         <a id="website-5"></a>
                     </div>
                 </div>
