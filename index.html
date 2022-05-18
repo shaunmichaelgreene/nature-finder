@@ -4,7 +4,7 @@
         <meta charset="utf-8" />
         <meta http-equiv="x-ua-compatible" content="ie=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!-- <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> -->
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
         <title>Nature Finder</title>
         <link rel="stylesheet" href="./assets/css/foundation.css" />
         <link rel="stylesheet" href="./assets/css/app.css" />
@@ -15,20 +15,18 @@
         <header class="large-12 cell">
             <h1>Welcome to Nature Finder <i class="fas fa-hiking" alt="icon of hiker"></i></h1>
         </header>
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x"></div>
-
+        <main class="grid-container">
             <!-- Hero form begins -->
             <div class="grid-x grid-padding-x" id="wrapper">
                 <!-- Fix picture to fill in the proper space needed as background -->
                 <div class="large-12 cell">
                     <div class="callout">
                         <h2>Find The Perfect Nature Spot For You!</h2>
-
                         <p>Looking for a trail to hike near you? A fun natural landmark? A peaceful local park?</p>
                         <p>
                             Enter in your zipcode below to find up to 5 nearby natural points of interest, including locations and details for each. Once you've found it here, you're ready to go get lost!
                         </p>
+                        <!--Search Form-->
                         <div id ="form-container" class="form-container grid-x grid-padding-x">
                             <form id="search-form" class="large-10 cell">
                                 <label>Zip Code</label>
@@ -45,19 +43,96 @@
                                     id="search-button"
                                 >Search</button>
                             </form>
-                            <!-- <div id="search-buttn-container" class="large-2 cell"> -->
                             <div id="buttons-container">
-
-
                                 <button id="clear-history" class="button not-shown">Clear History</button>
-
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
+            <!-- Search Results Begin -->
+            <div id="results-container" class="callout not-shown">
+                <h3 id="name-container"></h3>
+                <!-- Row For 1st POI -->
+                <div id="results-row-1"class="grid-x result-row">
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="name-1"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell">
+                            <p id="address-1"></p>
+                        </div>
+                    <div class="small-10 large-3 result-cell cell phone">
+                        <p id="phone-1"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell website">
+                            <a id="website-1"></a>
+                    </div>
+                </div>
+                <!-- Row For 2nd POI -->
+                <div id="results-row-2"class="grid-x result-row">
+                    <div class="small-10 large-3 result-cell text-center cell">
+                            <p id="name-2"></p>
+                        </div>
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="address-2"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell phone">
+                        <p id="phone-2"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell website">
+                        <a id="website-2"></a>
+                    </div>
+                </div>
+                <!-- Row For 3rd POI -->
+                <div id="results-row-3"class="grid-x result-row">
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="name-3"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell">
+                            <p id="address-3"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell phone">
+                            <p id="phone-3"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell website">
+                            <a id="website-3"></a>
+                    </div>
+                </div>
+                <!-- Row For 4th POI -->
+                <div id="results-row-4"class="grid-x result-row">
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="name-4"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="address-4"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell phone">
+                        <p id="phone-4"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell website">
+                        <a id="website-4"></a>
+                    </div>
+                </div>
+                <!-- Row For 5th POI -->
+                <div id="results-row-5"class="grid-x result-row">
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="name-5"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell">
+                        <p id="address-5"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell phone">
+                        <p id="phone-5"></p>
+                    </div>
+                    <div class="small-10 large-3 result-cell cell website">
+                        <a id="website-5"></a>
+                    </div>
+                </div>
+            </div>
+        </main>
         <!--Start Zip Input Error Handling Modal-->
-        <div class="reveal" id="input-alert" data-reveal>
+      <div class="reveal" id="input-alert" data-reveal>
         <p>Please re-enter your search term as a 5-digit zip code (Ex:'15212'")</p>
         <button class="close-button" data-close aria-label="Close modal" type="button">
           <span aria-hidden="true">&times;</span>
@@ -82,87 +157,6 @@
         </button>
       </div>
       <!--End No Results Response Modal-->
-
-            <!-- 2nd column with trails begin -->
-            <!-- 1st trail found -->
-            <div id="results-container" class="callout not-shown">
-                <h3 id="name-container"></h3>
-                <div id="results-row-1"class="grid-x result-row">
-                    <div class="small-10 large-3 result-cell cell">
-                            <p id="name-1"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell">
-                            <p id="address-1"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell phone">
-                            <p id="phone-1"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell website">
-                            <a id="website-1"></a>
-                    </div>
-                </div>
-                <!-- 2nd trail found -->
-                <div id="results-row-2"class="grid-x result-row">
-                    <div class="small-10 large-3 result-cell text-center cell">
-                            <p id="name-2"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell">
-                            <p id="address-2"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell phone">
-                        <p id="phone-2"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell website">
-                        <a id="website-2"></a>
-                    </div>
-                </div>
-                <!-- 3rd trail found -->
-                <div id="results-row-3"class="grid-x result-row">
-                    <div class="small-10 large-3 result-cell cell">
-                            <p id="name-3"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell">
-                            <p id="address-3"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell phone">
-                            <p id="phone-3"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell website">
-                            <a id="website-3"></a>
-                    </div>
-                </div>
-                <!-- 4th trail found -->
-                <div id="results-row-4"class="grid-x result-row">
-                    <div class="small-10 large-3 result-cell cell">
-                        <p id="name-4"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell">
-                        <p id="address-4"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell phone">
-                        <p id="phone-4"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell website">
-                        <a id="website-4"></a>
-                    </div>
-                </div>
-                <!-- 5th trail found -->
-                <div id="results-row-5"class="grid-x result-row">
-                    <div class="small-10 large-3 result-cell cell">
-                        <p id="name-5"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell">
-                        <p id="address-5"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell phone">
-                        <p id="phone-5"></p>
-                    </div>
-                    <div class="small-10 large-3 result-cell cell website">
-                        <a id="website-5"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <script src="./assets/js/vendor/jquery.js"></script>
         <script src="./assets/js/vendor/what-input.js"></script>

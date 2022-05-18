@@ -22,6 +22,7 @@ header h1 {
     margin: 0;
 }
 
+/* Hero Styling */
 .callout {
     border-color:#020d69;
     border-radius: 25px;
@@ -44,6 +45,7 @@ header h1 {
 #search-form label {
     color: #020d69;
 }
+/* End Hero Styling */
 
 .result-cell {
     display: flex;
@@ -53,38 +55,18 @@ header h1 {
     border-width: 50px;
 
 }
-/* class name to hide HTML features as needed */
+/* class name to hide HTML elements as needed */
 .not-shown {  
     display:none;
 }
 
-#results-container p#name-1{
-    font-weight:bold;
-}
-
-#results-container p#name-2 {
-    font-weight:bold;
-}
-
-#results-container p#name-3 {
-    font-weight:bold;
-}
-
-#results-container p#name-4 {
-    font-weight:bold;
-}
-
-#results-container p#name-5 {
+#name-1, #name-2, #name-3, #name-4, #name-5 {
     font-weight:bold;
 }
 
 .button {
     margin-left: 5px;
 }
-
-/* #border.grid-x {
-    border-bottom: double #020d69;
-} */
 
 .result-row {
     border-bottom: double #020d69;
