@@ -9,7 +9,7 @@ This app utilizes HTML, CSS, JavaScript and multiple APIs to create a single-pag
 **Presentation:** https://docs.google.com/presentation/d/1fCUpbm_U-_Q4L0K-1IIRDDiC1S_TNNcZ-WKClF4j65M/edit?usp=sharing
 
 ## Live Deployed Link:
-https://shaunmichaelgreene.github.io/easy-trail-finder/
+https://shaunmichaelgreene.github.io/nature-finder/
 
 **Screenshot:** 
 [![screenshot.jpg](https://i.postimg.cc/vmmSVSd7/screenshot.jpg)](https://postimg.cc/PCB4GyJN)
